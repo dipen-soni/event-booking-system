@@ -40,16 +40,16 @@ A full-featured **Event Booking REST API** built with **Laravel 12**, featuring 
 
 ## 🛠 Tech Stack
 
-| Component | Technology |
-|---|---|
-| Framework | Laravel 12.52.0 |
-| PHP | 8.4+ |
-| Database | MySQL |
-| Authentication | Laravel Sanctum |
-| Authorization | Spatie Laravel Permission |
-| Queue | Database driver |
-| Cache | Database driver |
-| Testing | PHPUnit |
+| Component      | Technology                |
+| -------------- | ------------------------- |
+| Framework      | Laravel 12.52.0           |
+| PHP            | 8.4+                      |
+| Database       | MySQL                     |
+| Authentication | Laravel Sanctum           |
+| Authorization  | Spatie Laravel Permission |
+| Queue          | Database driver           |
+| Cache          | Database driver           |
+| Testing        | PHPUnit                   |
 
 ---
 
@@ -95,7 +95,7 @@ A full-featured **Event Booking REST API** built with **Laravel 12**, featuring 
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/dipen-soni/event-booking-system.git
 cd event-booking-system
 ```
 
@@ -138,6 +138,7 @@ php artisan migrate --seed
 ```
 
 This seeds:
+
 - **2 Admins** — `admin@example.com` / `password`, `admin2@example.com` / `password`
 - **3 Organizers** — random factory data
 - **10 Customers** — random factory data
@@ -196,22 +197,22 @@ php artisan queue:work
 
 ### 🔐 Authentication
 
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `POST` | `/api/register` | ❌ | Register (customer/organizer) |
-| `POST` | `/api/login` | ❌ | Login, returns Bearer token |
-| `POST` | `/api/logout` | ✅ | Revoke current token |
-| `GET` | `/api/me` | ✅ | Get current user with roles |
+| Method | Endpoint        | Auth | Description                   |
+| ------ | --------------- | ---- | ----------------------------- |
+| `POST` | `/api/register` | ❌   | Register (customer/organizer) |
+| `POST` | `/api/login`    | ❌   | Login, returns Bearer token   |
+| `POST` | `/api/logout`   | ✅   | Revoke current token          |
+| `GET`  | `/api/me`       | ✅   | Get current user with roles   |
 
 ### 🎪 Events
 
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `GET` | `/api/events` | ❌ | List events (paginated, searchable, filterable) |
-| `GET` | `/api/events/{id}` | ❌ | View event with tickets |
-| `POST` | `/api/events` | ✅ Organizer | Create event |
-| `PUT` | `/api/events/{id}` | ✅ Organizer | Update own event |
-| `DELETE` | `/api/events/{id}` | ✅ Organizer | Delete own event |
+| Method   | Endpoint           | Auth         | Description                                     |
+| -------- | ------------------ | ------------ | ----------------------------------------------- |
+| `GET`    | `/api/events`      | ❌           | List events (paginated, searchable, filterable) |
+| `GET`    | `/api/events/{id}` | ❌           | View event with tickets                         |
+| `POST`   | `/api/events`      | ✅ Organizer | Create event                                    |
+| `PUT`    | `/api/events/{id}` | ✅ Organizer | Update own event                                |
+| `DELETE` | `/api/events/{id}` | ✅ Organizer | Delete own event                                |
 
 **Query Parameters for `GET /api/events`:**
 | Parameter | Example | Description |
@@ -224,38 +225,38 @@ php artisan queue:work
 
 ### 🎫 Tickets
 
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `POST` | `/api/events/{event_id}/tickets` | ✅ Organizer | Create ticket for event |
-| `PUT` | `/api/tickets/{id}` | ✅ Organizer | Update ticket |
-| `DELETE` | `/api/tickets/{id}` | ✅ Organizer | Delete ticket |
+| Method   | Endpoint                         | Auth         | Description             |
+| -------- | -------------------------------- | ------------ | ----------------------- |
+| `POST`   | `/api/events/{event_id}/tickets` | ✅ Organizer | Create ticket for event |
+| `PUT`    | `/api/tickets/{id}`              | ✅ Organizer | Update ticket           |
+| `DELETE` | `/api/tickets/{id}`              | ✅ Organizer | Delete ticket           |
 
 ### 📋 Bookings
 
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
+| Method | Endpoint                     | Auth    | Description                       |
+| ------ | ---------------------------- | ------- | --------------------------------- |
 | `POST` | `/api/tickets/{id}/bookings` | ✅ Auth | Book tickets (availability check) |
-| `GET` | `/api/bookings` | ✅ Auth | List own bookings |
-| `PUT` | `/api/bookings/{id}/cancel` | ✅ Auth | Cancel own booking |
+| `GET`  | `/api/bookings`              | ✅ Auth | List own bookings                 |
+| `PUT`  | `/api/bookings/{id}/cancel`  | ✅ Auth | Cancel own booking                |
 
 ### 💳 Payments
 
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
+| Method | Endpoint                     | Auth    | Description                     |
+| ------ | ---------------------------- | ------- | ------------------------------- |
 | `POST` | `/api/bookings/{id}/payment` | ✅ Auth | Mock payment (80% success rate) |
-| `GET` | `/api/payments/{id}` | ✅ Auth | View payment details |
+| `GET`  | `/api/payments/{id}`         | ✅ Auth | View payment details            |
 
 ### 👑 Admin Panel
 
 All admin endpoints are prefixed with `/api/admin/` and require the `admin` role.
 
-| Resource | Endpoints |
-|---|---|
-| Users | `GET/POST /admin/users`, `GET/PUT/DELETE /admin/users/{id}` |
-| Events | `GET/POST /admin/events`, `GET/PUT/DELETE /admin/events/{id}` |
-| Tickets | `GET/POST /admin/events/{id}/tickets`, `GET/PUT/DELETE /admin/events/{id}/tickets/{id}` |
-| Bookings | `GET/POST /admin/bookings`, `GET/PUT/DELETE /admin/bookings/{id}` |
-| Payments | `GET/POST /admin/payments`, `GET/PUT/DELETE /admin/payments/{id}` |
+| Resource | Endpoints                                                                               |
+| -------- | --------------------------------------------------------------------------------------- |
+| Users    | `GET/POST /admin/users`, `GET/PUT/DELETE /admin/users/{id}`                             |
+| Events   | `GET/POST /admin/events`, `GET/PUT/DELETE /admin/events/{id}`                           |
+| Tickets  | `GET/POST /admin/events/{id}/tickets`, `GET/PUT/DELETE /admin/events/{id}/tickets/{id}` |
+| Bookings | `GET/POST /admin/bookings`, `GET/PUT/DELETE /admin/bookings/{id}`                       |
+| Payments | `GET/POST /admin/payments`, `GET/PUT/DELETE /admin/payments/{id}`                       |
 
 ---
 
@@ -273,6 +274,7 @@ curl -X POST http://localhost:8000/api/login \
 ```
 
 **Response:**
+
 ```json
 {
   "message": "Login successful.",
@@ -296,17 +298,17 @@ curl http://localhost:8000/api/me \
 
 Managed via **Spatie Laravel Permission**.
 
-| Role | Permissions |
-|---|---|
-| **Admin** | Full access to all resources (users, events, tickets, bookings, payments) |
+| Role          | Permissions                                                                  |
+| ------------- | ---------------------------------------------------------------------------- |
+| **Admin**     | Full access to all resources (users, events, tickets, bookings, payments)    |
 | **Organizer** | Create/update/delete own events & tickets, read-only bookings for own events |
-| **Customer** | Browse events/tickets, book tickets, cancel bookings, view own payments |
+| **Customer**  | Browse events/tickets, book tickets, cancel bookings, view own payments      |
 
 ### Seeded Users
 
-| Email | Password | Role |
-|---|---|---|
-| `admin@example.com` | `password` | Admin |
+| Email                | Password   | Role  |
+| -------------------- | ---------- | ----- |
+| `admin@example.com`  | `password` | Admin |
 | `admin2@example.com` | `password` | Admin |
 
 ---
@@ -335,15 +337,15 @@ php artisan test --filter=PaymentServiceTest
 
 ### Test Summary
 
-| File | Tests | Coverage |
-|---|---|---|
-| `Feature/AuthTest` | 13 | Registration, Login, Logout, Me |
-| `Feature/EventTest` | 15 | Browse, Search, Filter, CRUD, Roles |
-| `Feature/TicketTest` | 7 | CRUD, Ownership, Validation |
-| `Feature/BookingTest` | 11 | Booking, Availability, Double-booking, Cancel |
-| `Feature/PaymentTest` | 10 | Payment, Notifications, Ownership |
-| `Unit/PaymentServiceTest` | 10 | processPayment(), processRefund() |
-| **Total** | **68 tests, 150 assertions** | **All passing ✅** |
+| File                      | Tests                        | Coverage                                      |
+| ------------------------- | ---------------------------- | --------------------------------------------- |
+| `Feature/AuthTest`        | 13                           | Registration, Login, Logout, Me               |
+| `Feature/EventTest`       | 15                           | Browse, Search, Filter, CRUD, Roles           |
+| `Feature/TicketTest`      | 7                            | CRUD, Ownership, Validation                   |
+| `Feature/BookingTest`     | 11                           | Booking, Availability, Double-booking, Cancel |
+| `Feature/PaymentTest`     | 10                           | Payment, Notifications, Ownership             |
+| `Unit/PaymentServiceTest` | 10                           | processPayment(), processRefund()             |
+| **Total**                 | **68 tests, 150 assertions** | **All passing ✅**                            |
 
 ---
 
