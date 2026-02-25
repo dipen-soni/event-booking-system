@@ -62,20 +62,20 @@ A full-featured **Event Booking REST API** built with **Laravel 12**, featuring 
 │  Auth:   /logout, /me, /bookings, /payments         │
 │  Admin:  /admin/* (full CRUD)                       │
 ├─────────────────────────────────────────────────────┤
-│                   Middleware                         │
-│  auth:sanctum │ role:admin,organizer │ prevent.dbl   │
+│                   Middleware                        │
+│  auth:sanctum │ role:admin,organizer │ prevent.dbl  │
 ├─────────────────────────────────────────────────────┤
 │                  Controllers                        │
-│  Auth │ Api\Event │ Api\Ticket │ Api\Booking │ Admin │
+│  Auth │ Api\Event │ Api\Ticket │ Api\Booking │ Admin│
 ├─────────────────────────────────────────────────────┤
 │              Services & Traits                      │
-│  PaymentService │ CommonQueryScopes                  │
+│  PaymentService │ CommonQueryScopes                 │
 ├─────────────────────────────────────────────────────┤
 │                    Models                           │
-│  User │ Event │ Ticket │ Booking │ Payment           │
+│  User │ Event │ Ticket │ Booking │ Payment          │
 ├─────────────────────────────────────────────────────┤
 │                   Database                          │
-│  MySQL with indexed tables + Spatie permission tbls  │
+│  MySQL with indexed tables + Spatie permission tbls │
 └─────────────────────────────────────────────────────┘
 ```
 
